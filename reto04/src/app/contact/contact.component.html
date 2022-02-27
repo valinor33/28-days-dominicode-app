@@ -1,0 +1,67 @@
+<h1>Contact Form ID: {{id}}</h1>
+<form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+  <div class="mb-4">
+    <label for="name" class="form-label">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      name="name"
+      [(ngModel)]="model.name"
+      required
+      #name="ngModel"
+    />
+    <div class="alert alert-danger" [hidden]="name.valid || name.pristine">
+      This field is required.
+    </div>
+  </div>
+  <div class="mb-4 form'check">
+    <label for="checkAdult" class="form-label"
+      >Are you over 18 years of age?</label
+    >
+    <input
+      type="checkbox"
+      class="form-check-input"
+      id="checkAdult"
+      [(ngModel)]="model.checkAdult"
+      required
+      name="checkAdult"
+      #checkAdult="ngModel"
+    />
+    <div class="alert alert-danger" [hidden]="checkAdult.valid || checkAdult.pristine">This field is required.</div>
+  </div>
+  <div class="mb-4">
+    <label for="department" class="form-label">Department</label>
+    <select
+      name="department"
+      class="form-select form-select-sm"
+      id="department"
+      [(ngModel)]="model.department"
+    >
+      <option selected>Open this select</option>
+      <option value="marketing">Marketing</option>
+      <option value="sales">Sales</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+  <div class="mb-4">
+    <label for="comment" class="form-label">Comment</label>
+    <textarea
+      name="comment"
+      id="comment"
+      rows="4"
+      placeholder="Leave a comment..."
+      class="form-control"
+      [(ngModel)]="model.comment"
+      required
+      #comment="ngModel"
+    ></textarea>
+    <div class="alert alert-danger" [hidden]="comment.valid || comment.pristine">This field is required.</div>
+  </div>
+  <div class="d-grid gap-2 col-4 float-end">
+    <button type="submit" class="btn btn-info btn-lg" [disabled]="contactForm.invalid">Send</button>
+  </div>
+</form>
+<pre>
+    {{ contactForm.value | json }}
+</pre>
