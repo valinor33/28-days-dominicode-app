@@ -1,0 +1,35 @@
+<form action="">
+  <div class="row align-items-center">
+    <div class="col-auto">
+      <label for="newItem" class="col-form-label">New {{ label }}</label>
+    </div>
+    <div class="col-auto">
+      <input
+        type="text"
+        name="newItem"
+        id="newItem"
+        class="form-control"
+        [ngModel]="selection?.name"
+        #newItem
+      />
+    </div>
+    <div class="col-auto">
+      <button
+        *ngIf="!selection?.name"
+        (click)="onAddNewItem(newItem.value); newItem.value = ''"
+        class="btn btn-primary"
+        [ngClass]="[className]"
+      >
+        Add {{ label }}
+      </button>
+      <button
+        *ngIf="selection?.name"
+        (click)="onUpdateItem(selection, newItem.value); newItem.value = ''"
+        class="btn btn-primary mx-1"
+        [ngClass]="[className]"
+      >
+        Update {{ label }}
+      </button>
+    </div>
+  </div>
+</form>

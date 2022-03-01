@@ -1,0 +1,87 @@
+<!-- DIA 4 -->
+<!-- <p>{{title}} en Dominicode con Anguar</p> -->
+<!-- <p>Total: {{5 + 5}}</p> -->
+<!-- <img src="{{url}}" alt=""> -->
+
+<!-- DIA 5 -->
+<!-- <p>El nombre es : {{name}}</p> -->
+<!-- <input type="text" [(ngModel)]="name"> -->
+
+<!-- DIA 6 -->
+<!-- <input type="text" [(ngModel)]="name">
+<p *ngIf="name">El nombre es : {{name}}</p>
+<ul *ngFor="let city of cities">
+    <li>{{city}}</li>
+</ul> -->
+
+<!-- DIA 7 -->
+<!-- <input type="text" [(ngModel)]="name" />
+<p *ngIf="name">El nombre es : {{ name }}</p>
+<ul *ngFor="let city of cities">
+  <li [ngClass]="['selected', 'blue']">{{ city }}</li>
+  <li
+    [ngClass]="{ selected: city === 'Barcelona', blue: city !== 'Montevideo' }"
+  >
+    {{ city }}
+  </li>
+  <li
+    [ngStyle]="{
+      color: 'violet',
+      'background-color': city === 'Madrid' ? 'blue' : 'green'
+    }"
+  >
+    {{ city }}
+  </li>
+</ul>
+ -->
+
+<!-- DIA 8 -->
+
+<!-- DIA 9 -->
+<!-- <p *ngIf="" name>El nombre es : {{ name }}</p>
+<input type="text" [(ngModel)]="name" />
+
+<ul *ngFor="let city of cities">
+  <li
+    (click)="onCityClicked(city)"
+    [ngClass]="{ selected: city === selection }"
+  >
+    {{ city }}
+  </li>
+</ul>
+
+<div *ngIf="selection">
+  <p>Your city is: {{ selection }}</p>
+  <button (click)="onClear()">Clear your selection</button>
+</div> -->
+
+<!-- DIA 10 -->
+<!-- <p *ngIf="" name>El nombre es : {{ name }}</p>
+<input type="text" [(ngModel)]="name" /> -->
+
+<!-- <ul *ngFor="let city of cities">
+  <li
+    (click)="onCityClicked(city)"
+    [ngClass]="{ selected: city === selection }"
+  >
+    {{ city }}
+  </li>
+</ul>
+
+<div *ngIf="selection">
+  <p>Your city is: {{ selection }}</p>
+  <app-button (click)="onClear()" [color]="'blue'" [label]="'Clear your selection'" ></app-button>
+</div> -->
+
+<!-- DIA 11 -->
+<!-- <p *ngIf="" name>El nombre es : {{ name }}</p>
+<input type="text" [(ngModel)]="name" /> -->
+
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
