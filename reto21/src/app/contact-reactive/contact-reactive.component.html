@@ -1,4 +1,4 @@
-<h1>Contact Form {{ name }}</h1>
+<h1>Contact Form {{ name }} - {{ (selectedCity$ | async)?.name }}</h1>
 <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
   <div class="mb-4">
     <label for="name" class="form-label">Name</label>
@@ -62,7 +62,9 @@
       formControlName="department"
     >
       <option selected>Open this select</option>
-      <option *ngFor="let department of departments" [value]="department">{{department}}</option>
+      <option *ngFor="let department of departments" [value]="department">
+        {{ department }}
+      </option>
     </select>
   </div>
   <div class="mb-4">

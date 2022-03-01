@@ -4,6 +4,9 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
 } from '@angular/core';
 import { City } from '../services/data.service';
 
@@ -13,24 +16,34 @@ import { City } from '../services/data.service';
   styleUrls: ['./form-new-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormNewItemComponent {
+export class FormNewItemComponent implements AfterViewInit {
   @Input() className = 'primary';
   @Input() label!: string;
   @Input() selection!: City;
+  @ViewChild('newItem') newItem!: ElementRef;
 
   @Output() newItemEvent = new EventEmitter<string>();
   @Output() updateItemEvent = new EventEmitter<City>();
 
-  onAddNewItem(item: string): void {
-    this.newItemEvent.emit(item);
+  ngAfterViewInit(): void {
+    this.newItem.nativeElement.focus();
   }
 
-  onUpdateItem(item: City, change: string): void {
-    const city: City = {
-      _id: item._id,
-      name: change,
-    };
+  onAddNewItem(): void {
+    this.newItemEvent.emit(this.newItem.nativeElement.value);
+    this.onClear();
+  }
 
+  onUpdateItem(): void {
+    const city: City = {
+      _id: this.selection._id,
+      name: this.newItem.nativeElement,
+    };
     this.updateItemEvent.emit(city);
+    this.onClear();
+  }
+
+  private onClear(): void {
+    this.newItem.nativeElement.value = '';
   }
 }

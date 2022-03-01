@@ -16,7 +16,7 @@
     <div class="col-auto">
       <button
         *ngIf="!selection?.name"
-        (click)="onAddNewItem(newItem.value); newItem.value = ''"
+        (click)="onAddNewItem()"
         class="btn btn-primary"
         [ngClass]="[className]"
       >
@@ -24,7 +24,7 @@
       </button>
       <button
         *ngIf="selection?.name"
-        (click)="onUpdateItem(selection, newItem.value); newItem.value = ''"
+        (click)="onUpdateItem()"
         class="btn btn-primary mx-1"
         [ngClass]="[className]"
       >
