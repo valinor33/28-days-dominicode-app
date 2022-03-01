@@ -1,33 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-contact-reactive',
   templateUrl: './contact-reactive.component.html',
-  styleUrls: ['./contact-reactive.component.scss']
+  styleUrls: ['./contact-reactive.component.scss' ,
 })
 export class ContactReactiveComponent implements OnInit {
   contactForm!: FormGroup;
   name!: string;
   departments: string[] = [];
+  selectedCity$ = this.dataSvc.selectedCity$;
 
-  constructor(private readonly fb: FormBuilder, private readonly route: ActivatedRoute) { }
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly route: ActivatedRoute,
+    private readonly dataSvc: DataService
+  ) {}
 
   ngOnInit(): void {
-    this.departments = this.route.snapshot.data['departments']
+    this.departments = this.route.snapshot.data['departments'];
 
-    this.route.queryParams.subscribe(
-      (params: Params) => {
-        this.name = params['name'];
-      });
-    this.contactForm = this.initForm()
+    this.route.queryParams.subscribe((params: Params) => {
+      this.name = params['name'];
+    });
+    this.contactForm = this.initForm();
     // this.onPathValue()
     // this.onSetValue()
   }
 
   onPathValue(): void {
-    this.contactForm.patchValue({ name: 'Andrés' })
+    this.contactForm.patchValue({ name: 'Andrés' });
   }
 
   onSetValue(): void {
@@ -44,6 +49,6 @@ export class ContactReactiveComponent implements OnInit {
       checkAdult: ['', [Validators.required]],
       department: [''],
       comment: ['', [Validators.required, Validators.maxLength(255)]],
-    })
+    });
   }
 }
